@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  app:
+    image: node:20-alpine
+    container_name: bookies-app-jenkins
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "npm install && node app.js"
+    ports:
+      - "8000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/bookies
+      - JWT_SECRET=bookiessecretkey123
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6
+    container_name: bookies-mongo-jenkins
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-jenkins-data:/data/db
+
+volumes:
+  mongo-jenkins-data:
