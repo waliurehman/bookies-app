@@ -6,7 +6,7 @@ services:
     working_dir: /app
     volumes:
       - .:/app
-    command: sh -c "npm install && node app.js"
+    command: sh -c "npm install && cd client && npm install && npm run build && cd .. && cp -r client/dist ./public && node app.js"
     ports:
       - "8000:3000"
     environment:
@@ -14,7 +14,6 @@ services:
       - JWT_SECRET=bookiessecretkey123
     depends_on:
       - mongo
-
   mongo:
     image: mongo:6
     container_name: bookies-mongo-jenkins
@@ -22,6 +21,5 @@ services:
       - "27018:27017"
     volumes:
       - mongo-jenkins-data:/data/db
-
 volumes:
   mongo-jenkins-data:
