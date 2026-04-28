@@ -1,0 +1,10 @@
+oracleJdk-26/
+target/
+test-output/
+test-output.log
+node_modules/
+client/node_modules/
+server/node_modules/
+.idea/
+.vscode/
+*.log

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-current.dtd">
+<suite name="Bookstore Test Suite" parallel="false" verbose="2">
+    
+    <test name="Bookstore Login and Navigation Tests">
+        <classes>
+            <class name="tests.BookstoreLoginTests">
+                <methods>
+                    <!-- Test Case 1 -->
+                    <include name="testValidSignIn"/>
+                    
+                    <!-- Test Case 2 -->
+                    <include name="testInvalidPassword"/>
+                    
+                    <!-- Test Case 3 -->
+                    <include name="testEmptyEmail"/>
+                    
+                    <!-- Test Case 4 -->
+                    <include name="testEmptyPassword"/>
+                    
+                    <!-- Test Case 5 -->
+                    <include name="testSignOut"/>
+                    
+                    <!-- Test Case 6 -->
+                    <include name="testSignUp"/>
+                    
+                    <!-- Test Case 7 -->
+                    <include name="testSignUpDuplicateEmail"/>
+                    
+                    <!-- Test Case 8 -->
+                    <include name="testBooksPageLoad"/>
+                    
+                    <!-- Test Case 9 -->
+                    <include name="testBooksVisible"/>
+                    
+                    <!-- Test Case 10 -->
+                    <include name="testFreeBookFilter"/>
+                    
+                    <!-- Test Case 11 -->
+                    <include name="testNavigateToContact"/>
+                    
+                    <!-- Test Case 12 -->
+                    <include name="testNavigateToAbout"/>
+                    
+                    <!-- Test Case 13 -->
+                    <include name="testDarkModeToggle"/>
+                    
+                    <!-- Test Case 14 -->
+                    <include name="testAdminAddBook"/>
+                    
+                    <!-- Test Case 15 -->
+                    <include name="testBooksPageWithoutLogin"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+    <!-- Listeners for reporting -->
+    <listeners>
+        <listener class-name="org.testng.reporters.TestHTMLReporter"/>
+        <listener class-name="org.testng.reporters.jq.Main"/>
+    </listeners>
+</suite>
