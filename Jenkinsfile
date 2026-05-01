@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'markhobson/maven-chrome:jdk-17'
+            args '--network host'
+        }
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -18,10 +23,9 @@ pipeline {
             emailext(
                 subject: "Bookstore Tests - Build #${BUILD_NUMBER} - SUCCESS",
                 body: """
-                    Build: ${BUILD_NUMBER}
-                    Status: SUCCESS
-                    Tests: 15 passed
-                    URL: ${BUILD_URL}
+Build #${BUILD_NUMBER} - SUCCESS
+Tests: 15/15 Passed
+URL: ${BUILD_URL}
                 """,
                 to: "waliurehman4023@gmail.com"
             )
