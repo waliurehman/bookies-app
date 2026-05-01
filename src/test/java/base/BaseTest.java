@@ -22,10 +22,23 @@ public class BaseTest {
         options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--window-size=1280,720");  // Smaller window to save memory
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.addArguments("--disable-extensions");
         options.addArguments("--disable-plugins");
+        options.addArguments("--disable-background-networking");
+        options.addArguments("--disable-background-timer-throttling");
+        options.addArguments("--disable-breakpad");
+        options.addArguments("--disable-client-side-phishing-detection");
+        options.addArguments("--disable-default-apps");
+        options.addArguments("--disable-hang-monitor");
+        options.addArguments("--disable-popup-blocking");
+        options.addArguments("--disable-prompt-on-repost");
+        options.addArguments("--disable-sync");
+        options.addArguments("--metrics-recording-only");
+        options.addArguments("--mute-audio");
+        options.addArguments("--no-first-run");
+        options.addArguments("--safebrowsing-disable-auto-update");
         
         // Initialize WebDriver
         driver = new ChromeDriver(options);
