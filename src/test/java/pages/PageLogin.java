@@ -98,6 +98,24 @@ public class PageLogin {
     
     // Login Methods
     public void clickLoginButton() {
+        // Wait for page to be ready by checking if document is ready
+        wait.until(webDriver -> {
+            try {
+                Object ready = ((org.openqa.selenium.JavascriptExecutor) webDriver)
+                    .executeScript("return document.readyState");
+                return "complete".equals(ready.toString());
+            } catch (Exception e) {
+                return false;
+            }
+        });
+        
+        // Add small delay for React to finish rendering
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        
         wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
     }
     
