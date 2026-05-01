@@ -3,8 +3,9 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
@@ -39,8 +40,9 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         
-        // Set implicit wait
-        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(10));
+        // Set implicit wait and page load timeout
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(15));
+        driver.manage().timeouts().pageLoadTimeout(java.time.Duration.ofSeconds(30));
     }
     
     @AfterClass

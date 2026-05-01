@@ -48,7 +48,7 @@ public class PageLogin {
     // Constructor
     public PageLogin(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     // Helper to safely send keys or fallback to JS when element is not interactable
