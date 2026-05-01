@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'markhobson/maven-chrome:jdk-17'
-            args '--network host'
-        }
-    }
+    agent any
     stages {
         stage('Checkout') {
             steps {
