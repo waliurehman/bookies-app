@@ -17,42 +17,28 @@ public class BaseTest {
         // Setup WebDriver
         WebDriverManager.chromedriver().setup();
         
-        // Chrome Options
+        // Chrome Options - minimal set to avoid incompatibilities
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--window-size=1280,720");  // Smaller window to save memory
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.addArguments("--disable-extensions");
         options.addArguments("--disable-plugins");
-        options.addArguments("--disable-background-networking");
-        options.addArguments("--disable-background-timer-throttling");
-        options.addArguments("--disable-breakpad");
-        options.addArguments("--disable-client-side-phishing-detection");
-        options.addArguments("--disable-default-apps");
-        options.addArguments("--disable-hang-monitor");
-        options.addArguments("--disable-popup-blocking");
-        options.addArguments("--disable-prompt-on-repost");
-        options.addArguments("--disable-sync");
-        options.addArguments("--metrics-recording-only");
-        options.addArguments("--mute-audio");
-        options.addArguments("--no-first-run");
-        options.addArguments("--safebrowsing-disable-auto-update");
         
         // Initialize WebDriver
         driver = new ChromeDriver(options);
         
-        // Give Chrome time to fully initialize
+        // Give Chrome time to fully initialize (important on resource-constrained EC2)
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
         
-        // Set implicit wait and page load timeout
-        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(15));
-        driver.manage().timeouts().pageLoadTimeout(java.time.Duration.ofSeconds(30));
+        // Set timeouts - generous for EC2 resource constraints
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(20));
+        driver.manage().timeouts().pageLoadTimeout(java.time.Duration.ofSeconds(60));
     }
     
     @AfterClass
